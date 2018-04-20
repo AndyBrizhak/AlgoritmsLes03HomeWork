@@ -2,6 +2,7 @@
 #include <math.h>
 #include <locale.h>
 #include <stdlib.h> // Для использования генератора случайных чисел
+#include "OptimumBublesSort.h"
 
 // Определяем максимальный размер массива
 #define MaxN 100
@@ -30,36 +31,67 @@ void print(int N, int * a)
 
 
 
-int main(int argc, char * argv[]) {
-	char *locale = setlocale(LC_ALL, "");
-	
-	int a[MaxN]; // создаём массив максимального размера
-	int N =100;
-	//FILE * in;
-	//in = fopen("d:\\temp\\data.txt", "r");
+void BublesSort(int  a[100])
+{
+	int j = 0;
+	int k = 0;
+	int n = MaxN;
+	for (k = 0; k < n; k++)
+		for (j = 0; j < n - 1; j++)
+			if (a[j] > a[j + 1])
+			{
+				swap(&a[j], &a[j + 1]);
+			}
+}
+
+void BuildAr(int N, int  a[100])
+{
+	/*FILE * in;
+	in = fopen("d:\\temp\\data.txt", "w");*/
+	/*in = fopen("\\data.txt", "r");*/
 	//fscanf(in, "%i", &N);
 	srand(time(NULL)); // Инициализация счетчика случайных чисел.
 	int i;
 	for (i = 0; i < N; i++)
 	{
-	//	fscanf(in, "%i", &a[i]);
+		//	fscanf(in, "%i", &a[i]);
 		a[i] = rand() % 100;     //заполняем массив случайными числами от 0 до 99
+		//fprint(in, "%i", &a[i]);
 	}
 	//fclose(in);
+}
+
+int main(int argc, char * argv[]) {
+	char *locale = setlocale(LC_ALL, "");
+	
+	int a[MaxN]; // создаём массив максимального размера
+	int N =MaxN;
+	BuildAr(N, a);
 
 	puts("Array before sort");
-	print(N, a);
+	print(MaxN, a);
 	getch();
 
-	int j = 0;
-	for (i = 0; i < N; i++)
-		for (j = 0; j < N - 1; j++)
-			if (a[j] > a[j + 1])
-			{
-				swap(&a[j], &a[j + 1]);
-			}
-	puts("Array after sort");
-	print(N, a);
+	BublesSort(a);
+	puts("Array after simple sort");
+	print(MaxN, a);
 	getch();
+
+	//int b[MaxN]; // создаём массив максимального размера
+	//int x = MaxN;
+	//int i = 0;
+	//FILE * fp;
+	//fp = fopen("d:\\temp\\data.txt", "r+");
+	//for (i = 0; i< x; i++) 
+	//{
+	//	fscanf(fp, "%i", &b[i]);
+	//	//	fscanf(in, "%i", &a[i]);
+	//}
+	//fclose(fp);
+
+	//puts("Array before sort");
+	//print(MaxN, b);
+	//getch();
+
 	return 0;
 }
