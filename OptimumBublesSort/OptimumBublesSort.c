@@ -46,19 +46,16 @@ void BublesSort(int  a[100])
 
 void BuildAr(int N, int  a[100])
 {
-	/*FILE * in;
-	in = fopen("d:\\temp\\data.txt", "w");*/
-	/*in = fopen("\\data.txt", "r");*/
-	//fscanf(in, "%i", &N);
+	
 	srand(time(NULL)); // Инициализация счетчика случайных чисел.
 	int i;
 	for (i = 0; i < N; i++)
 	{
-		//	fscanf(in, "%i", &a[i]);
+		
 		a[i] = rand() % 100;     //заполняем массив случайными числами от 0 до 99
-		//fprint(in, "%i", &a[i]);
+		
 	}
-	//fclose(in);
+	
 }
 
 int main(int argc, char * argv[]) {
@@ -67,6 +64,13 @@ int main(int argc, char * argv[]) {
 	int a[MaxN]; // создаём массив максимального размера
 	int N =MaxN;
 	BuildAr(N, a);
+	/*FILE * in;
+	in = fopen("d:\\temp\\data.txt", "w");*/
+	/*in = fopen("\\data.txt", "r");*/
+	//fscanf(in, "%i", &N);
+	//	fscanf(in, "%i", &a[i]);
+	//fprint(in, "%i", &a[i]);
+	//fclose(in);
 
 	puts("Array before sort");
 	print(MaxN, a);
