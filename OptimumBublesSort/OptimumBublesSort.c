@@ -64,9 +64,23 @@ int main(int argc, char * argv[]) {
 	int a[MaxN]; // создаём массив максимального размера
 	int N =MaxN;
 	BuildAr(N, a);
-	/*FILE * in;
-	in = fopen("d:\\temp\\data.txt", "w");*/
-	/*in = fopen("\\data.txt", "r");*/
+	FILE *in;
+
+	//in = fopen("d:\\temp\\data.txt", "w");
+	in = fopen("data.txt", "w");
+	if (in == NULL)
+	{
+		puts("File not found");
+		getch();
+	}
+	//fscanf(in, "%i", &N);
+	fprintf(in, "%i", &N);
+	int i;
+	for (i = 0; i < N; i++)
+	{
+		fprintf(in, "%i", &a[i]);
+	}
+	fclose(in);
 	//fscanf(in, "%i", &N);
 	//	fscanf(in, "%i", &a[i]);
 	//fprint(in, "%i", &a[i]);
