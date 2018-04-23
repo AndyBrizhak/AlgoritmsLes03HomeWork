@@ -145,42 +145,151 @@ Par BublesSort(int *x, int size)   // простая сортировка
 		int N = Max100;
 		BuildAr(a, N);
 
-		int b[Max100]; // создаём копию неотсортированного массива максимального размера
-		int x = Max100;
-		int i;
-		for (i = 0; i < x; i++)
+		FILE *out100;
+		out100 = fopen("data.txt", "w");
+		if (out100 == NULL)
 		{
-			b[i] = a[i];
+			puts("File not found");
+			getch();
 		}
+		//fscanf(in, "%i", &N);
+		fprintf(out100, "%i", &N);
+		int i;
+		for (i = 0; i < N; i++)
+		{
+			fprintf(out100, "%i", a[i]);
+		}
+		fclose(out100);
+		
+
+		//int b[Max100]; // создаём копию неотсортированного массива максимального размера
+		int x = Max100;
+		///*int i;*/
+		//for (i = 0; i < x; i++)
+		//{
+		//	b[i] = a[i];
+		//}
 
 		puts("Array before coktail sort");
 		print(Max100, a);
 		getch();
-		Par cocktailsort100 = CocktailSort(b, Max100);
+		Par cocktailsort100 = CocktailSort(a, Max100);
 		puts("Array after coktail sort");
-		print(Max100, b);
+		print(Max100, a);
 		printf(" \n");
 		printf("Size array for cocktail sort: %d \n", cocktailsort100.size);
 		printf("Count after coktail sort: %d \n", cocktailsort100.count); // Выводим счётчик на экран
 		printf("coktail sort выполнялся %f секунд\n", cocktailsort100.time);
 		getch();
 
-		//int b[Max100]; // создаём копию неотсортированного массива максимального размера
-		//int x = Max100;
-		//int i;
-		for (i = 0; i < x; i++)
-		{
-			b[i] = a[i];
-		}
+		
+		//for (i = 0; i < x; i++)
+		//{
+		//	b[i] = a[i];
+		//}
 
-		Par bublessort100 = BublesSort(b, Max100);
+		FILE *in;
+		in = fopen("data.txt", "r");
+		if (in == NULL)
+		{
+			puts("File not found");
+			getch();
+		}
+		fscanf(in, "%i", &N);
+		//fprintf(in, "%i", &N);
+		//int i;
+		for (i = 0; i < N; i++)
+		{
+			fscanf(in, "%i", &a[i]);
+		}
+		fclose(in);
+		
+
+
+		Par bublessort100 = BublesSort(a, Max100);
 		puts("Array after bubles sort");
-		print(Max100, b);
+		print(Max100, a);
 		printf(" \n");
-		printf("Size array for bubles sort: %d \n", cocktailsort100.size);
+		printf("Size array for bubles sort: %d \n", bublessort100.size);
 		printf("Count after simple buble sort: %d \n", bublessort100.count); // Выводим счётчик на экран
 		printf("Bubles sort выполнялся %f секунд\n", bublessort100.time);
 		getch();
+
+		int a10000[Max10000]; // создаём массив максимального размера
+		N = Max10000;
+		BuildAr(a10000, N);
+
+		int b10000[Max10000]; // создаём копию неотсортированного массива максимального размера
+		x = Max10000;
+		/*int i;*/
+		for (i = 0; i < x; i++)
+		{
+			b10000[i] = a10000[i];
+		}
+
+		puts("Array before coktail sort");
+		print(Max10000, a10000);
+		getch();
+		Par cocktailsort10000 = CocktailSort(b10000, Max10000);
+		puts("Array after coktail sort");
+		print(Max10000, b10000);
+		printf(" \n");
+		printf("Size array for cocktail sort: %d \n", cocktailsort10000.size);
+		printf("Count after coktail sort: %d \n", cocktailsort10000.count); // Выводим счётчик на экран
+		printf("coktail sort выполнялся %f секунд\n", cocktailsort10000.time);
+		getch();
+
+		for (i = 0; i < x; i++)
+		{
+			b10000[i] = a10000[i];
+		}
+
+		Par bublessort10000 = BublesSort(b10000, Max10000);
+		puts("Array after bubles sort");
+		print(Max10000, b10000);
+		printf(" \n");
+		printf("Size array for bubles sort: %d \n", bublessort10000.size);
+		printf("Count after simple buble sort: %d \n", bublessort10000.count); // Выводим счётчик на экран
+		printf("Bubles sort выполнялся %f секунд\n", bublessort10000.time);
+		getch();
+
+		//int a1000000[Max1000000]; // создаём массив максимального размера
+		//N = Max1000000;
+		//BuildAr(a1000000, N);
+
+		//int b1000000[Max1000000]; // создаём копию неотсортированного массива максимального размера
+		//x = Max1000000;
+		///*int i;*/
+		//for (i = 0; i < x; i++)
+		//{
+		//	b1000000[i] = a1000000[i];
+		//}
+
+		//puts("Array before coktail sort");
+		//print(Max1000000, a1000000);
+		//getch();
+		//Par cocktailsort1000000 = CocktailSort(b1000000, Max1000000);
+		//puts("Array after coktail sort");
+		//print(Max1000000, b1000000);
+		//printf(" \n");
+		//printf("Size array for cocktail sort: %d \n", cocktailsort1000000.size);
+		//printf("Count after coktail sort: %d \n", cocktailsort1000000.count); // Выводим счётчик на экран
+		//printf("coktail sort выполнялся %f секунд\n", cocktailsort1000000.time);
+		//getch();
+
+		//for (i = 0; i < x; i++)
+		//{
+		//	b1000000[i] = a1000000[i];
+		//}
+
+		//Par bublessort1000000 = BublesSort(b1000000, Max1000000);
+		//puts("Array after bubles sort");
+		//print(Max1000000, b1000000);
+		//printf(" \n");
+		//printf("Size array for bubles sort: %d \n", bublessort1000000.size);
+		//printf("Count after simple buble sort: %d \n", bublessort1000000.count); // Выводим счётчик на экран
+		//printf("Bubles sort выполнялся %f секунд\n", bublessort1000000.time);
+		//getch();
 
 
 		return 0;
