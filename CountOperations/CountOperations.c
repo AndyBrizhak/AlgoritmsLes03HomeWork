@@ -14,6 +14,14 @@
 //элементов.Представьте данные в виде таблицы.Подсчитывать только операции
 //перестановки и время сортировки.
 
+struct ParFunc
+{
+	int size;
+	int count;
+	double time;
+};
+
+typedef struct ParFunc Par;
 void swap(int * a, int * b) {
 	int t = *a;
 	*a = *b;
@@ -42,8 +50,9 @@ void BuildAr(int *x, int  size)
 	}
 }
 
-void CocktailSort(int *x, int size)   // шейкерная сортировка
+Par CocktailSort(int *x, int size)   // шейкерная сортировка
 	{
+	Par Parametrs;
 		int left = 0;
 		int right = size - 1;
 		int count = 0; // Ввели счётчик количества операций
@@ -83,18 +92,27 @@ void CocktailSort(int *x, int size)   // шейкерная сортировка
 			}
 			left++;
 		}
-
+		Parametrs.size = size;
+		Parametrs.count = count;
+		Parametrs.time = timesort;
 		printf(" \n");
 		printf("Count after coktail sort: %d \n", count); // Выводим счётчик на экран
 		printf("coktail sort выполнялся %f секунд\n", timesort);
+		return Parametrs;
+		
 	}
 
-	void BublesSort(int *x, int size)   // простая сортировка
+Par BublesSort(int *x, int size)   // простая сортировка
 	{
+	Par Parametrs;
 		int count = 0; // Ввели счётчик количества операций
 		int j = 0;
 		int k = 0;
 		int n = size;
+		clock_t start;
+		clock_t finish;
+		double timesort, timeswap;
+		timesort = 0;
 		for (k = 0; k < n; k++)
 		{
 			for (j = 0; j < n - 1; j++)
@@ -102,12 +120,21 @@ void CocktailSort(int *x, int size)   // шейкерная сортировка
 				if (x[j] > x[j + 1])
 				{
 					count++;
+					start = clock();
 					swap(&x[j], &x[j + 1]);
+					finish = clock();
+					timeswap = (double)(finish - start) / CLOCKS_PER_SEC;
+					timesort += timeswap;
 				}
 			}
 		}
+		Parametrs.size = size;
+		Parametrs.count = count;
+		Parametrs.time = timesort;
 		printf(" \n");
 		printf("Count after simple buble sort: %d \n", count); // Выводим счётчик на экран
+		printf("Bubles sort выполнялся %f секунд\n", timesort);
+		return Parametrs;
 	}
 
 	int main(int argc, char * argv[])
@@ -118,13 +145,41 @@ void CocktailSort(int *x, int size)   // шейкерная сортировка
 		int N = Max100;
 		BuildAr(a, N);
 
+		int b[Max100]; // создаём копию неотсортированного массива максимального размера
+		int x = Max100;
+		int i;
+		for (i = 0; i < x; i++)
+		{
+			b[i] = a[i];
+		}
+
 		puts("Array before coktail sort");
 		print(Max100, a);
 		getch();
-
-		CocktailSort(a, Max100);
+		Par cocktailsort100 = CocktailSort(b, Max100);
 		puts("Array after coktail sort");
-		print(Max100, a);
+		print(Max100, b);
+		printf(" \n");
+		printf("Size array for cocktail sort: %d \n", cocktailsort100.size);
+		printf("Count after coktail sort: %d \n", cocktailsort100.count); // Выводим счётчик на экран
+		printf("coktail sort выполнялся %f секунд\n", cocktailsort100.time);
+		getch();
+
+		//int b[Max100]; // создаём копию неотсортированного массива максимального размера
+		//int x = Max100;
+		//int i;
+		for (i = 0; i < x; i++)
+		{
+			b[i] = a[i];
+		}
+
+		Par bublessort100 = BublesSort(b, Max100);
+		puts("Array after bubles sort");
+		print(Max100, b);
+		printf(" \n");
+		printf("Size array for bubles sort: %d \n", cocktailsort100.size);
+		printf("Count after simple buble sort: %d \n", bublessort100.count); // Выводим счётчик на экран
+		printf("Bubles sort выполнялся %f секунд\n", bublessort100.time);
 		getch();
 
 
